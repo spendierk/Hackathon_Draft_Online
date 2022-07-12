@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome the TKET Hackathon
+                    Welcome the TKET Hackathon - DRAFT!!!
                 </a>
             </li>
         </ul>
@@ -470,55 +470,6 @@ The list of these extensions can be found <a class="reference external" href="ht
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-
-
-
-
-
-<iframe srcdoc="
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&#34;en&#34;&gt;
-&lt;head&gt;
-    &lt;meta charset=&#34;UTF-8&#34;&gt;
-
-    &lt;script type=&#34;application/javascript&#34; src=&#34;https://cdn.jsdelivr.net/npm/vue@3&#34;&gt;&lt;/script&gt;
-    &lt;script type=&#34;application/javascript&#34; src=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.umd.js&#34;&gt;&lt;/script&gt;
-    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.css&#34;&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div id=&#34;circuit-display-vue-container-a3c34714-80b7-4728-996e-a052ea0d0359&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
-        &lt;div style=&#34;display: none&#34;&gt;
-            &lt;div id=&#34;circuit-json-to-display&#34;&gt;{&#34;bits&#34;: [[&#34;c&#34;, [0]], [&#34;c&#34;, [1]]], &#34;commands&#34;: [{&#34;args&#34;: [[&#34;q&#34;, [0]]], &#34;op&#34;: {&#34;params&#34;: [&#34;0.3&#34;], &#34;type&#34;: &#34;Rx&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [1]]], &#34;op&#34;: {&#34;params&#34;: [&#34;0.5&#34;], &#34;type&#34;: &#34;Ry&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [1]], [&#34;q&#34;, [0]]], &#34;op&#34;: {&#34;params&#34;: [&#34;-0.6&#34;], &#34;type&#34;: &#34;CRz&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [0]], [&#34;c&#34;, [0]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [1]], [&#34;c&#34;, [1]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}], &#34;implicit_permutation&#34;: [[[&#34;q&#34;, [0]], [&#34;q&#34;, [0]]], [[&#34;q&#34;, [1]], [&#34;q&#34;, [1]]]], &#34;phase&#34;: &#34;0.0&#34;, &#34;qubits&#34;: [[&#34;q&#34;, [0]], [&#34;q&#34;, [1]]]}&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;circuit-display-container :circuit-element-str=&#34;&#39;#circuit-json-to-display&#39;&#34;&gt;&lt;/circuit-display-container&gt;
-    &lt;/div&gt;
-
-    &lt;script type=&#34;application/javascript&#34;&gt;
-        const { createApp } = Vue;
-        const circuitDisplayContainer = window[&#34;pytket-circuit-renderer&#34;].default;
-
-        // Init variables to be shared between circuit display instances
-        if (typeof window.pytketCircuitDisplays === &#34;undefined&#34;) {
-            window.pytketCircuitDisplays = {};
-        }
-
-        const uid = &#34;a3c34714-80b7-4728-996e-a052ea0d0359&#34;;
-
-        // Create the root Vue component
-        window.pytketCircuitDisplays[uid] = createApp({
-            delimiters: [&#39;[[#&#39;, &#39;#]]&#39;],
-            components: { circuitDisplayContainer },
-        }).mount(&#34;#circuit-display-vue-container-&#34;+uid);
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-"
-        width="100%" height="200px"
-        style="border: none; outline: none; resize: vertical; overflow: auto"></iframe>
-
-</div></div>
 </div>
 <p>Just like classical computer architectures have assembly instruction sets that specify CPU computations, quantum computers are typically only able to execute specific operations, called the architecture gate set. Let’s see which gates are supported by the ibm_belem emulator. For this, we can use <code class="docutils literal notranslate"><span class="pre">backend_info.gate_set</span></code> to obtain this information on the used gate set.</p>
 <div class="cell docutils container">
@@ -572,7 +523,7 @@ The list of these extensions can be found <a class="reference external" href="ht
     &lt;link rel=&#34;stylesheet&#34; href=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.css&#34;&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div id=&#34;circuit-display-vue-container-afbdd5e5-2f28-4434-8c36-45995b052495&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
+    &lt;div id=&#34;circuit-display-vue-container-02754406-ae61-42e3-b0df-b5b7e3aa6fb3&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
         &lt;div style=&#34;display: none&#34;&gt;
             &lt;div id=&#34;circuit-json-to-display&#34;&gt;{&#34;bits&#34;: [[&#34;c&#34;, [0]], [&#34;c&#34;, [1]]], &#34;commands&#34;: [{&#34;args&#34;: [[&#34;node&#34;, [1]]], &#34;op&#34;: {&#34;type&#34;: &#34;SX&#34;}}, {&#34;args&#34;: [[&#34;node&#34;, [2]]], &#34;op&#34;: {&#34;type&#34;: &#34;SX&#34;}}, {&#34;args&#34;: [[&#34;node&#34;, [1]]], &#34;op&#34;: {&#34;params&#34;: [&#34;0.5&#34;], &#34;type&#34;: &#34;Rz&#34;}}, {&#34;args&#34;: [[&#34;node&#34;, [2]]], &#34;op&#34;: {&#34;params&#34;: [&#34;-0.7&#34;], &#34;type&#34;: &#34;Rz&#34;}}, {&#34;args&#34;: [[&#34;node&#34;, [2]]], &#34;op&#34;: {&#34;type&#34;: &#34;SX&#34;}}, {&#34;args&#34;: [[&#34;node&#34;, [2]]], &#34;op&#34;: {&#34;params&#34;: [&#34;0.2&#34;], &#34;type&#34;: &#34;Rz&#34;}}, {&#34;args&#34;: [[&#34;node&#34;, [1]], [&#34;node&#34;, [2]]], &#34;op&#34;: {&#34;type&#34;: &#34;CX&#34;}}, {&#34;args&#34;: [[&#34;node&#34;, [2]]], &#34;op&#34;: {&#34;params&#34;: [&#34;0.3&#34;], &#34;type&#34;: &#34;Rz&#34;}}, {&#34;args&#34;: [[&#34;node&#34;, [1]], [&#34;node&#34;, [2]]], &#34;op&#34;: {&#34;type&#34;: &#34;CX&#34;}}, {&#34;args&#34;: [[&#34;node&#34;, [2]], [&#34;c&#34;, [0]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}, {&#34;args&#34;: [[&#34;node&#34;, [1]], [&#34;c&#34;, [1]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}], &#34;implicit_permutation&#34;: [[[&#34;node&#34;, [1]], [&#34;node&#34;, [1]]], [[&#34;node&#34;, [2]], [&#34;node&#34;, [2]]]], &#34;phase&#34;: &#34;1.25&#34;, &#34;qubits&#34;: [[&#34;node&#34;, [1]], [&#34;node&#34;, [2]]]}&lt;/div&gt;
         &lt;/div&gt;
@@ -588,7 +539,7 @@ The list of these extensions can be found <a class="reference external" href="ht
             window.pytketCircuitDisplays = {};
         }
 
-        const uid = &#34;afbdd5e5-2f28-4434-8c36-45995b052495&#34;;
+        const uid = &#34;02754406-ae61-42e3-b0df-b5b7e3aa6fb3&#34;;
 
         // Create the root Vue component
         window.pytketCircuitDisplays[uid] = createApp({
@@ -633,15 +584,15 @@ The list of these extensions can be found <a class="reference external" href="ht
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0 0]
+ [1 1]
  [0 1]
- [0 1]
- [0 0]
- [0 0]
- [0 1]
- [0 0]
  [0 1]
  [1 1]
- [0 0]]
+ [0 0]
+ [0 1]
+ [0 1]
+ [0 1]
+ [0 1]]
 </pre></div>
 </div>
 </div>
@@ -654,7 +605,7 @@ The list of these extensions can be found <a class="reference external" href="ht
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counter({(0, 0): 5, (0, 1): 4, (1, 1): 1})
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counter({(0, 1): 6, (0, 0): 2, (1, 1): 2})
 </pre></div>
 </div>
 </div>

@@ -11,22 +11,16 @@
 # - [Circuit Optimization](https://github.com/CQCL/pytket/blob/master/examples/compilation_example.ipynb)
 # - [Advanced techniques for creating circuits](https://github.com/CQCL/pytket/blob/master/examples/circuit_generation_example.ipynb)
 
-# ## Your task
+# ## Challenge for this Hackathon
 # 
-# The costs for using quantum hardware platforms depend on different parameters such as runtime, the number of gates in a program, the complexity of the gates used, and the number of shots. Based on the known pricing of different gate-based quantum computing hardware providers, you are tasked to find the cheapest solution for your company to perform a selection of quantum computations. 
+# #### ADD specific challenges here #####
 # 
-# For this challenge, you will use the TKET compiler, which integrates with Qiskit. TKET is a platform agnostic quantum software toolkit that will help you compile and optimize your quantum programs to target a range of hardware and find the most valuable solution for your company. 
 # 
-# For IonQ and Quantinuum pricing, see here: 
-# [Azure Quantum providers pricing](https://docs.microsoft.com/en-us/azure/quantum/pricing?tabs=tabid-AQcredits%2Ctabid-AQcreditsQ%2Ctabid-payasgo%2Ctabid-learndevelop&pivots=ide-computing)
 # 
-# For IBM pricing, see here: 
-# [Qiskit Runtime (Beta) - IBM Cloud](https://cloud.ibm.com/catalog/services/quantum-computing)
 # 
-# For Amazon Bracket Pricing of many others, see here: 
-# [Amazon Bracket Pricing](https://aws.amazon.com/braket/pricing/)
+# 
 
-# ## Previous tasks (ETH Zürich, 8th April - 10th April, 2022)
+# ## Previous challenges (ETH Zürich, 8th April - 10th April, 2022)
 # You are now ready for the _real_ challenges!
 # For this hackathon, we have prepared two different tasks that you can try to
 # tackle with TKET:

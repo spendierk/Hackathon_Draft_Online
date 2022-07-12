@@ -1,4 +1,4 @@
-# Welcome the TKET Hackathon
+# Welcome the TKET Hackathon - DRAFT!!!
 
 On behalf of Quantinuum, welcome to the TKET Hackathon! This little guide should get you started quickly in `pytket`, a high-performance Python library for building and simplifying quantum programs.
 
