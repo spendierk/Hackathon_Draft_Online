@@ -1,0 +1,901 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Building circuits with pytket &#8212; Hackathon Manual</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running a circuit on IBM’s backends" href="running_on_IBM.html" />
+    <link rel="prev" title="Getting ready with pytket" href="Introduction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/TKET_Logo_copiedfromquantinuumwebsite.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hackathon Manual</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome the TKET Hackathon
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   Getting ready with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     pytket
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Building circuits with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     pytket
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="running_on_IBM.html">
+   Running a circuit on IBM’s backends
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Hackathon%20tasks.html">
+   Your Tasks for this Hackathon
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/circuit_basics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcircuit_basics.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/circuit_basics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-circuit">
+   Creating a Circuit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measurement">
+   Measurement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-more-complex-circuits">
+   Creating more complex circuits
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Building circuits with pytket</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-circuit">
+   Creating a Circuit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measurement">
+   Measurement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-more-complex-circuits">
+   Creating more complex circuits
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="building-circuits-with-pytket">
+<h1>Building circuits with <code class="docutils literal notranslate"><span class="pre">pytket</span></code><a class="headerlink" href="#building-circuits-with-pytket" title="Permalink to this headline">#</a></h1>
+<p>Quantum computers (and simulators) available today can execute quantum programs given in a specific format,
+called a “quantum circuit”. These circuits can be seen as the equivalent of assembly in classical computer science. Our work, therefore, consists of defining such quantum circuits so that they can be executed on the machine, or simulator, of our choice.</p>
+<p>Qubits are the basic unit of quantum computation and the quantum analog of classical bits. A qubit is represented as a combination of two quantum states of a given basis. There are many ways to realize qubits: energy level of electrons, photon polarization, or spin. For example, the most common basis is the <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span>-basis. For this basis, the quantum states of the hydrogen atom, for example, are expressed as <span class="math notranslate nohighlight">\(\left|0\right&gt;\)</span>  for the “ground state” and <span class="math notranslate nohighlight">\(\left|1\right&gt;\)</span>  for the “excited state”, equivalent to 0 or 1 when translated to classical bits. Qubits can be in any quantum state</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation*}
+\left| \psi \right\rangle=
+\alpha\left|0\right&gt; + \beta\left|1\right&gt;,
+\end{equation*}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> potentially being complex numbers. When we measure the qubit we get state <span class="math notranslate nohighlight">\(\left|0\right&gt;\)</span> with probability <span class="math notranslate nohighlight">\(|\alpha|^2\)</span> and state <span class="math notranslate nohighlight">\(\left|1\right&gt;\)</span> with probability <span class="math notranslate nohighlight">\(|\beta|^2\)</span>.</p>
+<p>For a single electron in a hydrogen atom, the wavefunction for a basic 50-50 superposition in its electronic ground state and excited state can be written in the form of</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation*}
+\left| \psi \right\rangle = \frac{1}{\sqrt{2}} \left( \left| 0 \right\rangle + \left| 1 \right\rangle\right).
+\end{equation*}
+\]</div>
+<p>When we measure this wavefunction, it will (theoretically) provide a result of 0 or 1 with a given probability. Specifically,  if we measure this qubit at the end of a computation, we get a single, definite value. That is, we get <span class="math notranslate nohighlight">\(\left|0\right&gt;\)</span> or <span class="math notranslate nohighlight">\(\left|1\right&gt;\)</span>, each with some probability, not a superposition of <span class="math notranslate nohighlight">\(\left|0\right&gt;\)</span> and <span class="math notranslate nohighlight">\(\left|1\right&gt;\)</span>. Geometrically, this particular qubit lies on the equator, halfway between the north and south poles of the Bloch sphere, so if we measure it, we get <span class="math notranslate nohighlight">\(\left|0\right&gt;\)</span> with probability 1/2 or <span class="math notranslate nohighlight">\(\left|1\right&gt;\)</span> with probability 1/2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import warnings #used to disable warnings in this jupyter notebook, can be omitted </span>
+<span class="c1">#warnings.filterwarnings(&#39;ignore&#39;) #used to disable warnings in this jupyter notebook, can be omitted</span>
+<span class="c1">#pip install qutip   </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">qutip</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">qutip</span><span class="o">.</span><span class="n">Bloch</span><span class="p">()</span>
+<span class="n">pnt</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">b</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">pnt</span><span class="p">)</span>
+
+<span class="n">b</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/circuit_basics_2_0.png" src="_images/circuit_basics_2_0.png" />
+</div>
+</div>
+<p>A set of distinct measurement outcomes is called a basis, and <span class="math notranslate nohighlight">\(\left|0\right&gt;,\left|1\right&gt;\)</span> is called the <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span>-basis because they lie on the z-axis of the Bloch sphere. This is why we introduced <span class="math notranslate nohighlight">\(\left|0\right&gt;\)</span> and <span class="math notranslate nohighlight">\(\left|1\right&gt;\)</span> as the north and south poles, respectively, of the Bloch sphere.</p>
+<p>To calculate these probabilities, we take the norm-square of the coefficient of <span class="math notranslate nohighlight">\(\left|0\right&gt;\)</span> or <span class="math notranslate nohighlight">\(\left|1\right&gt;\)</span>. That is, the probability of getting <span class="math notranslate nohighlight">\(\left|0\right&gt;\)</span> (or <span class="math notranslate nohighlight">\(\left|1\right&gt;\)</span>) is</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation*}
+\left| \frac{1}{\sqrt{2}} \right|^2 = \frac{1}{2}.
+\end{equation*}
+\]</div>
+<p>One way to create a qubit in such superposition, is to take a qubit initialized in the “ground state” and then apply the Hadamard gate, or H gate, to it: <span class="math notranslate nohighlight">\(\left| \psi \right\rangle = H \left| 0 \right\rangle\)</span>.</p>
+<p>Here the H gate corrresponds to the following matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation*}
+H=\frac{1}{\sqrt{2}}
+\begin{pmatrix}
+1 &amp; 1 \\
+1 &amp; -1
+\end{pmatrix}\,\, ,
+\end{equation*}
+\end{split}\]</div>
+<p>and <span class="math notranslate nohighlight">\(\left|0\right&gt;\)</span> and <span class="math notranslate nohighlight">\(\left|1\right&gt;\)</span> are column vectors, which are vertical lists of numbers</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation*}
+\left|0\right&gt; =
+\begin{pmatrix}
+1 \\
+0
+\end{pmatrix}\,\, ,
+\left|1\right&gt; =
+\begin{pmatrix}
+0 \\
+1
+\end{pmatrix}\,\,.
+\end{equation*}
+\end{split}\]</div>
+<p>Following the rules of linear algebra, we can show that we obtain <span class="math notranslate nohighlight">\( \left| \psi \right\rangle = \frac{1}{\sqrt{2}} \left( \left| 0 \right\rangle + \left| 1 \right\rangle\right)\)</span>  given that we can write</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation*}
+\left| \psi \right\rangle=
+\begin{pmatrix}
+\alpha \\
+\beta
+\end{pmatrix}\,\, =
+\alpha\left|0\right&gt; + \beta\left|1\right&gt;,
+\end{equation*}
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\alpha = \beta = 1/\sqrt{2}\)</span>.</p>
+<section id="creating-a-circuit">
+<h2>Creating a Circuit<a class="headerlink" href="#creating-a-circuit" title="Permalink to this headline">#</a></h2>
+<p>To rewrite this wavefunction in terms of a circuit, i.e. taking a qubit initialized in the “ground state” and then applying the Hadamard gate, we need to first import the <a class="reference external" href="https://cqcl.github.io/pytket/manual/manual_circuit.html">circuit class</a> from TKET.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytket</span> <span class="kn">import</span> <span class="n">Circuit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then to display the circuit we want to evaluate we also need to import</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytket.circuit.display</span> <span class="kn">import</span> <span class="n">render_circuit_jupyter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we define our circuit with a single qubit, q[0], and classical bit, c[0], and then apply the The Hadamard gate to it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circ</span> <span class="o">=</span> <span class="n">Circuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">circ</span><span class="o">.</span><span class="n">H</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[H q[0]; ]
+</pre></div>
+</div>
+</div>
+</div>
+<p>At this step, the qubit q[0] is in a superposition state. We can show a schematic of the corresponding circuit by evaluating</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">render_circuit_jupyter</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+
+
+
+
+<iframe srcdoc="
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&#34;en&#34;&gt;
+&lt;head&gt;
+    &lt;meta charset=&#34;UTF-8&#34;&gt;
+
+    &lt;script type=&#34;application/javascript&#34; src=&#34;https://cdn.jsdelivr.net/npm/vue@3&#34;&gt;&lt;/script&gt;
+    &lt;script type=&#34;application/javascript&#34; src=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.umd.js&#34;&gt;&lt;/script&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.css&#34;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&#34;circuit-display-vue-container-d5df1a0a-5fa7-4937-b371-9856092bb4bc&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
+        &lt;div style=&#34;display: none&#34;&gt;
+            &lt;div id=&#34;circuit-json-to-display&#34;&gt;{&#34;bits&#34;: [[&#34;c&#34;, [0]]], &#34;commands&#34;: [{&#34;args&#34;: [[&#34;q&#34;, [0]]], &#34;op&#34;: {&#34;type&#34;: &#34;H&#34;}}], &#34;implicit_permutation&#34;: [[[&#34;q&#34;, [0]], [&#34;q&#34;, [0]]]], &#34;phase&#34;: &#34;0.0&#34;, &#34;qubits&#34;: [[&#34;q&#34;, [0]]]}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;circuit-display-container :circuit-element-str=&#34;&#39;#circuit-json-to-display&#39;&#34;&gt;&lt;/circuit-display-container&gt;
+    &lt;/div&gt;
+
+    &lt;script type=&#34;application/javascript&#34;&gt;
+        const { createApp } = Vue;
+        const circuitDisplayContainer = window[&#34;pytket-circuit-renderer&#34;].default;
+
+        // Init variables to be shared between circuit display instances
+        if (typeof window.pytketCircuitDisplays === &#34;undefined&#34;) {
+            window.pytketCircuitDisplays = {};
+        }
+
+        const uid = &#34;d5df1a0a-5fa7-4937-b371-9856092bb4bc&#34;;
+
+        // Create the root Vue component
+        window.pytketCircuitDisplays[uid] = createApp({
+            delimiters: [&#39;[[#&#39;, &#39;#]]&#39;],
+            components: { circuitDisplayContainer },
+        }).mount(&#34;#circuit-display-vue-container-&#34;+uid);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"
+        width="100%" height="200px"
+        style="border: none; outline: none; resize: vertical; overflow: auto"></iframe>
+
+</div></div>
+</div>
+<p>But a real device won’t work like this. We cannot observe a full quantum state. We have to make observations and measurments. In fact, we need to sample from a probabilisitic distribution.</p>
+</section>
+<section id="measurement">
+<h2>Measurement<a class="headerlink" href="#measurement" title="Permalink to this headline">#</a></h2>
+<p>In <code class="docutils literal notranslate"><span class="pre">pytket</span></code>, all measurements are single-qubit measurements in the <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span>-basis. Other forms of measurements can be constructed by combining these with other operations. Measurements produce classical data from the resulting state. Here, c[0] is a calssical register, or classical bit, which we obtain after measuring qubit q[0]. c[0] will either be 0 or 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circ</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+<span class="n">render_circuit_jupyter</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+
+
+
+
+<iframe srcdoc="
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&#34;en&#34;&gt;
+&lt;head&gt;
+    &lt;meta charset=&#34;UTF-8&#34;&gt;
+
+    &lt;script type=&#34;application/javascript&#34; src=&#34;https://cdn.jsdelivr.net/npm/vue@3&#34;&gt;&lt;/script&gt;
+    &lt;script type=&#34;application/javascript&#34; src=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.umd.js&#34;&gt;&lt;/script&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.css&#34;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&#34;circuit-display-vue-container-d1e16b3e-3e48-43c9-b11a-9436af6d546a&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
+        &lt;div style=&#34;display: none&#34;&gt;
+            &lt;div id=&#34;circuit-json-to-display&#34;&gt;{&#34;bits&#34;: [[&#34;c&#34;, [0]]], &#34;commands&#34;: [{&#34;args&#34;: [[&#34;q&#34;, [0]]], &#34;op&#34;: {&#34;type&#34;: &#34;H&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [0]], [&#34;c&#34;, [0]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}], &#34;implicit_permutation&#34;: [[[&#34;q&#34;, [0]], [&#34;q&#34;, [0]]]], &#34;phase&#34;: &#34;0.0&#34;, &#34;qubits&#34;: [[&#34;q&#34;, [0]]]}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;circuit-display-container :circuit-element-str=&#34;&#39;#circuit-json-to-display&#39;&#34;&gt;&lt;/circuit-display-container&gt;
+    &lt;/div&gt;
+
+    &lt;script type=&#34;application/javascript&#34;&gt;
+        const { createApp } = Vue;
+        const circuitDisplayContainer = window[&#34;pytket-circuit-renderer&#34;].default;
+
+        // Init variables to be shared between circuit display instances
+        if (typeof window.pytketCircuitDisplays === &#34;undefined&#34;) {
+            window.pytketCircuitDisplays = {};
+        }
+
+        const uid = &#34;d1e16b3e-3e48-43c9-b11a-9436af6d546a&#34;;
+
+        // Create the root Vue component
+        window.pytketCircuitDisplays[uid] = createApp({
+            delimiters: [&#39;[[#&#39;, &#39;#]]&#39;],
+            components: { circuitDisplayContainer },
+        }).mount(&#34;#circuit-display-vue-container-&#34;+uid);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"
+        width="100%" height="200px"
+        style="border: none; outline: none; resize: vertical; overflow: auto"></iframe>
+
+</div></div>
+</div>
+<p>Specifically, if we would prepare q[0] this way 1000 times and measure q[0], roughly 50% of the 1000 measures provided a 0 and 50% provided a 1, as expected.</p>
+<p>To implement such measurements, we already installed <code class="docutils literal notranslate"><span class="pre">pytket-qiskit</span></code>. <code class="docutils literal notranslate"><span class="pre">pytket-qiskit</span></code> integrates <code class="docutils literal notranslate"><span class="pre">qiskit</span></code> into <code class="docutils literal notranslate"><span class="pre">pytket</span></code>, an IBM tool that, among other things, provides access to their quantum computers and numerous simulators. For this section, we will use the noiseless AerSimulator. This is a simulator we can run on our computer. We will discuss how to run a circuit on a “real” quantum computer in a different section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytket.extensions.qiskit</span> <span class="kn">import</span> <span class="n">AerBackend</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerBackend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can check the required conditions to be satisfied for the circuit to be run on this backend. For this, we can use <code class="docutils literal notranslate"><span class="pre">required_predicates</span></code>. This tells us which gates are supported; in case gates are not supported, your circuit can be compiled for a given backend, and re-written in the supported gates, i.e. rotations can be decomposed into a set of Euler angles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span><span class="o">.</span><span class="n">required_predicates</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NoSymbolsPredicate,
+ GateSetPredicate:{ S Barrier Sdg RangePredicate Unitary2qBox Z X Y T Tdg SX SXdg H Rx Ry Rz U3 U2 U1 TK1 CX CY CZ CU1 CU3 CCX SWAP CSWAP noop Measure Reset PhasedX XXPhase YYPhase ZZPhase CnX Unitary1qBox }]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looks all good. the AerBackend supports the <code class="docutils literal notranslate"><span class="pre">H</span></code> gate and has a measurment option.</p>
+<p>Next we run the circuits by sampling it. Since we have to sample, we have to indicate how many samples we want to take. Suppose we would like to get 10 shots out from the AerBackend (10 repeats of the circuit and measurement). We can seed the simulator’s random-number generator to make the results reproducible, using an optional keyword argument to <code class="docutils literal notranslate"><span class="pre">process_circuit</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">handle</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">process_circuit</span><span class="p">(</span><span class="n">circ</span><span class="p">,</span> <span class="n">n_shots</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can output a shot table:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shots</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">get_result</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span><span class="o">.</span><span class="n">get_shots</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">shots</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1]
+ [1]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>These are our 10 measurements. The column represents the classical register, c[0], of qubit q[0]. We can also get a summary of the results by looking at counts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">get_result</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counter({(0,): 7, (1,): 3})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or we can plot a histogram of our results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">plot_counts</span><span class="p">(</span><span class="n">counts</span><span class="p">):</span>
+    <span class="n">counts_record</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;State&quot;</span><span class="p">:</span><span class="n">state</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">:</span><span class="n">count</span><span class="p">}</span> <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+    <span class="n">count_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">counts_record</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">count_df</span><span class="p">,</span> <span class="n">aspect</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_counts</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/circuit_basics_27_0.png" src="_images/circuit_basics_27_0.png" />
+</div>
+</div>
+</section>
+<section id="creating-more-complex-circuits">
+<h2>Creating more complex circuits<a class="headerlink" href="#creating-more-complex-circuits" title="Permalink to this headline">#</a></h2>
+<p>We can make circuits more complicated than the example of the uniform superposition state above. Besides the Hadamard gate, among the most common gates are the rotations (around the X, Y, or Z axis) as well as the “control-NOT” (CNot), the controlled negation, also called <code class="docutils literal notranslate"><span class="pre">CX</span></code>. The list of all the gates available in <code class="docutils literal notranslate"><span class="pre">pytket</span></code> is quite long. It is
+available in the documentation <a class="reference external" href="https://cqcl.github.io/tket/pytket/api/optype.html">here</a>.</p>
+<p>Let’s apply some of these gates to a new circuit with 3 qubits and 3 classical bits.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">n_bits</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">circ2</span> <span class="o">=</span> <span class="n">Circuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span><span class="n">n_bits</span><span class="p">)</span>
+<span class="c1"># a X rotation with angle pi/2 on the qubit 1</span>
+<span class="n">circ2</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># a Z rotation with angle pi/4 on the qubit 0</span>
+<span class="n">circ2</span><span class="o">.</span><span class="n">Rz</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1"># a CNot gate between qubits 0 and 2</span>
+<span class="n">circ2</span><span class="o">.</span><span class="n">CX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">circ2</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+<span class="n">render_circuit_jupyter</span><span class="p">(</span><span class="n">circ2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+
+
+
+
+<iframe srcdoc="
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&#34;en&#34;&gt;
+&lt;head&gt;
+    &lt;meta charset=&#34;UTF-8&#34;&gt;
+
+    &lt;script type=&#34;application/javascript&#34; src=&#34;https://cdn.jsdelivr.net/npm/vue@3&#34;&gt;&lt;/script&gt;
+    &lt;script type=&#34;application/javascript&#34; src=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.umd.js&#34;&gt;&lt;/script&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.css&#34;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&#34;circuit-display-vue-container-b18635b3-0f96-4498-802a-57c04fc6fe3c&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
+        &lt;div style=&#34;display: none&#34;&gt;
+            &lt;div id=&#34;circuit-json-to-display&#34;&gt;{&#34;bits&#34;: [[&#34;c&#34;, [0]], [&#34;c&#34;, [1]], [&#34;c&#34;, [2]]], &#34;commands&#34;: [{&#34;args&#34;: [[&#34;q&#34;, [0]]], &#34;op&#34;: {&#34;params&#34;: [&#34;0.25&#34;], &#34;type&#34;: &#34;Rz&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [1]]], &#34;op&#34;: {&#34;params&#34;: [&#34;0.5&#34;], &#34;type&#34;: &#34;Rx&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [1]], [&#34;c&#34;, [1]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [0]], [&#34;q&#34;, [2]]], &#34;op&#34;: {&#34;type&#34;: &#34;CX&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [0]], [&#34;c&#34;, [0]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [2]], [&#34;c&#34;, [2]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}], &#34;implicit_permutation&#34;: [[[&#34;q&#34;, [0]], [&#34;q&#34;, [0]]], [[&#34;q&#34;, [1]], [&#34;q&#34;, [1]]], [[&#34;q&#34;, [2]], [&#34;q&#34;, [2]]]], &#34;phase&#34;: &#34;0.0&#34;, &#34;qubits&#34;: [[&#34;q&#34;, [0]], [&#34;q&#34;, [1]], [&#34;q&#34;, [2]]]}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;circuit-display-container :circuit-element-str=&#34;&#39;#circuit-json-to-display&#39;&#34;&gt;&lt;/circuit-display-container&gt;
+    &lt;/div&gt;
+
+    &lt;script type=&#34;application/javascript&#34;&gt;
+        const { createApp } = Vue;
+        const circuitDisplayContainer = window[&#34;pytket-circuit-renderer&#34;].default;
+
+        // Init variables to be shared between circuit display instances
+        if (typeof window.pytketCircuitDisplays === &#34;undefined&#34;) {
+            window.pytketCircuitDisplays = {};
+        }
+
+        const uid = &#34;b18635b3-0f96-4498-802a-57c04fc6fe3c&#34;;
+
+        // Create the root Vue component
+        window.pytketCircuitDisplays[uid] = createApp({
+            delimiters: [&#39;[[#&#39;, &#39;#]]&#39;],
+            components: { circuitDisplayContainer },
+        }).mount(&#34;#circuit-display-vue-container-&#34;+uid);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"
+        width="100%" height="200px"
+        style="border: none; outline: none; resize: vertical; overflow: auto"></iframe>
+
+</div></div>
+</div>
+<p>We have seen how to define a circuit and visualize it, as well as how to run it on a simlator. Next, we will discuss how to run a circuit on an emulator or actual quantum computer.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Getting ready with <code class="docutils literal notranslate"><span class="pre">pytket</span></code></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="running_on_IBM.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Running a circuit on IBM’s backends</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Kathrin Spendier, Quantinuum<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
