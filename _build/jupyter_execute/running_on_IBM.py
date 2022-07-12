@@ -65,7 +65,7 @@ warnings.filterwarnings('ignore') #used to disable warnings in this jupyter note
 IBM_backend = IBMQEmulatorBackend('ibmq_belem', hub='ibm-q', group='open', project='main');
 
 
-# In[ ]:
+# In[3]:
 
 
 # defined a sample circuit
@@ -79,7 +79,7 @@ render_circuit_jupyter(circ3)
 
 # Just like classical computer architectures have assembly instruction sets that specify CPU computations, quantum computers are typically only able to execute specific operations, called the architecture gate set. Let's see which gates are supported by the ibm_belem emulator. For this, we can use `backend_info.gate_set` to obtain this information on the used gate set.
 
-# In[76]:
+# In[4]:
 
 
 print(IBM_backend.backend_info.gate_set)
@@ -87,7 +87,7 @@ print(IBM_backend.backend_info.gate_set)
 
 # We can check if the circuit is valid for this backend given the backend gate set.
 
-# In[77]:
+# In[5]:
 
 
 IBM_backend.valid_circuit(circ3) #check if the circuit is valid
@@ -95,14 +95,14 @@ IBM_backend.valid_circuit(circ3) #check if the circuit is valid
 
 # We see that we get "false" back. In this specific example, we have an `Rx`, `Ry`, and `Rz` gates. But the ibm_belem emulator only supports the `Rz` gate of these three. Hence we need to compile the circuit to this backend. The compilation of the circuit guarantees the circuit is in a format recognized by the simulator (or quantum computer). For this we use `backend.compile_circuit`.
 
-# In[78]:
+# In[6]:
 
 
 compiled_circIBM = IBM_backend.get_compiled_circuit(circ3)
 render_circuit_jupyter(compiled_circIBM)
 
 
-# In[79]:
+# In[7]:
 
 
 IBM_backend.valid_circuit(compiled_circIBM) #check if the circuit is valid
@@ -110,27 +110,27 @@ IBM_backend.valid_circuit(compiled_circIBM) #check if the circuit is valid
 
 # After compiling to the ibm_belem gate set, our new circuit is now valid to be run on this emulator. We will run 10 shots and then histogram the counts.
 
-# In[80]:
+# In[8]:
 
 
 quantum_handle = IBM_backend.process_circuit(compiled_circIBM, n_shots=10)
 
 
-# In[81]:
+# In[9]:
 
 
 quantum_shots = IBM_backend.get_result(quantum_handle).get_shots()
 print(quantum_shots)
 
 
-# In[82]:
+# In[10]:
 
 
 counts = IBM_backend.get_result(quantum_handle).get_counts()
 print(counts)
 
 
-# In[83]:
+# In[11]:
 
 
 import pandas as pd
@@ -145,7 +145,7 @@ def plot_counts(counts):
     plt.show()
 
 
-# In[70]:
+# In[12]:
 
 
 plot_counts(counts)
@@ -155,13 +155,13 @@ plot_counts(counts)
 # 
 # Being able to run a circuit on a real machine is fun, but it comes with some difficulties. In particular, we must be prepared to stand and wait in a possible long queue before we get your results back from IBM. Let's create a backend for running on the actual device and check that our compiled circuit is also valid for this backend.
 
-# In[84]:
+# In[13]:
 
 
 from pytket.extensions.qiskit import IBMQBackend
 
 
-# In[85]:
+# In[14]:
 
 
 ibmq_b = IBMQBackend("ibmq_belem")  #compile circuit to backend
@@ -170,7 +170,7 @@ ibmq_b.valid_circuit(compiled_circIBM) #check if the circuit is valid
 
 # We are now good to run this circuit on the device. After submitting, we can use the handle to check on the status of the job, so that we know when results are ready to be retrieved. The `circuit_status` method works for all backends, and returns a CircuitStatus object. If we just run get_result straight away, the backend will wait for results to complete, blocking any other code from running.
 
-# In[87]:
+# In[15]:
 
 
 #quantum_handle_ibmq_b = ibmq_b.process_circuit(compiled_circIBM, n_shots=10)
