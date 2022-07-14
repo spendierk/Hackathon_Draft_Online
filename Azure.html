@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Access to Quantinuum and IonQ Backends &#8212; Hackathon Manual</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Your Tasks for this Hackathon" href="Hackathon%20tasks.html" />
+    <link rel="prev" title="Running a circuit on IBM’s backends" href="running_on_IBM.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/TKET_Logo_copiedfromquantinuumwebsite.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hackathon Manual</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome the TKET Hackathon - DRAFT!!!
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   Getting ready with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     pytket
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="circuit_basics.html">
+   Building circuits with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     pytket
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="running_on_IBM.html">
+   Running a circuit on IBM’s backends
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Access to Quantinuum and IonQ Backends
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Hackathon%20tasks.html">
+   Your Tasks for this Hackathon
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Azure.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAzure.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/Azure.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Access to Quantinuum and IonQ Backends
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-for-azure-quantum-credit-free-trial">
+     Apply for Azure Quantum Credit Free Trial
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#important">
+       Important
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-an-azure-quantum-workspace">
+     Create an Azure Quantum workspace
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submitting-a-job-through-azure-quantum">
+   Submitting a job through Azure Quantum
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessing-quantinuum-and-ionq-targets">
+     Accessing Quantinuum and IonQ targets
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-pytket-job-submission-to-ionq">
+     Example
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pytket
+      </span>
+     </code>
+     job submission to IonQ
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-pytket-job-submission-to-quantinuum">
+     Example
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pytket
+      </span>
+     </code>
+     job submission to Quantinuum
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Access to Quantinuum and IonQ Backends</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Access to Quantinuum and IonQ Backends
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-for-azure-quantum-credit-free-trial">
+     Apply for Azure Quantum Credit Free Trial
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#important">
+       Important
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-an-azure-quantum-workspace">
+     Create an Azure Quantum workspace
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submitting-a-job-through-azure-quantum">
+   Submitting a job through Azure Quantum
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessing-quantinuum-and-ionq-targets">
+     Accessing Quantinuum and IonQ targets
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-pytket-job-submission-to-ionq">
+     Example
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pytket
+      </span>
+     </code>
+     job submission to IonQ
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-pytket-job-submission-to-quantinuum">
+     Example
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pytket
+      </span>
+     </code>
+     job submission to Quantinuum
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="access-to-quantinuum-and-ionq-backends">
+<h1>Access to Quantinuum and IonQ Backends<a class="headerlink" href="#access-to-quantinuum-and-ionq-backends" title="Permalink to this headline">#</a></h1>
+<p>You can get access to <a class="reference external" href="https://www.quantinuum.com/">Quantinuum</a> and <a class="reference external" href="https://ionq.com/">IonQ</a> simulators, emulators, and quantum machines through Microsoft Azure. When creating your workspace, first-time users automatically get free 500 (USD) Azure Quantum Credits for use with each participating quantum hardware provider. If you have consumed all the credits and need more, you can apply to the <a class="reference external" href="https://microsoft.qualtrics.com/jfe/form/SV_3fl9dfFrkC3g0aG?aq_source=organic">Azure Quantum Credits program</a>. For this Hackathon, we will use the simulators and emulators that do not use Azure Quantum Credits and hence are entirely free.</p>
+<section id="apply-for-azure-quantum-credit-free-trial">
+<h2>Apply for Azure Quantum Credit Free Trial<a class="headerlink" href="#apply-for-azure-quantum-credit-free-trial" title="Permalink to this headline">#</a></h2>
+<p>If you don’t have an Azure subscription, you can <a class="reference external" href="https://azure.microsoft.com/en-us/free/">create a free Azure account</a>. If you are a student and have a university email, check out the free Azure accounts <a class="reference external" href="https://azure.microsoft.com/en-us/free/students/">for students</a>. With Azure, you can create, deploy, and manage applications across multiple clouds, on-premises, and at the edge. You will get 200 (USD) Azure credit to use in other Azure services. For information regarding the application process to the Azure Quantum Credits Program see <a class="reference external" href="https://docs.microsoft.com/en-us/azure/quantum/azure-quantum-credits?tabs=tabid-portal">here</a>. Read over the details carefully</p>
+<p>Notice that Azure credits are not the same as Azure Quantum Credits. When you create a new Azure account, you get 200 (USD) of free Azure Credits to use in your first 30 days on Microsoft services. You can only use general-purpose Azure Credits with the Microsoft providers. 3rd-party providers (providers that Microsoft doesn’t own) aren’t eligible. Azure Quantum Credits can be used to run programs on quantum hardware. First-time users automatically get free 500 (USD) Azure Quantum Credits on top of the 200 (USD) free Azure Credits for use with each participating quantum hardware provider. Once you have consumed all the credits, you will get error messages when submitting new jobs, and you can then upgrade to a new plan to keep using the selected quantum hardware providers.</p>
+<section id="important">
+<h3>Important<a class="headerlink" href="#important" title="Permalink to this headline">#</a></h3>
+<p>You must provide a credit or debit card during the application process. Microsoft Azure will make a temporary authorization on this card, but you won’t be charged unless you move to pay-as-you-go pricing.</p>
+<p>Although, there are no costs or charges to using your free credits, there may be some small storage costs, as the input and output of your credits jobs are stored in a storage account that you pay for. Job data is typically &lt;1MB per job. For more details, see <a class="reference external" href="https://azure.microsoft.com/en-us/pricing/details/storage/blobs/">Azure Blob Storage pricing</a>.</p>
+</section>
+</section>
+<section id="create-an-azure-quantum-workspace">
+<h2>Create an Azure Quantum workspace<a class="headerlink" href="#create-an-azure-quantum-workspace" title="Permalink to this headline">#</a></h2>
+<p>Follow the directions <a class="reference external" href="https://docs.microsoft.com/en-us/azure/quantum/how-to-create-workspace?tabs=tabid-quick">here</a> to create an Azure Quantum workspace. Briefly:</p>
+<ol class="simple">
+<li><p>Sign in to the Azure portal, using the credentials for your Azure subscription.</p></li>
+<li><p>Select Create a resource and then search for Azure Quantum. You should see a tile for the Azure Quantum service on the results page.</p></li>
+<li><p>Select Azure Quantum and then select Create. This opens a form to create a workspace.</p></li>
+<li><p>Select a subscription to associate with the new workspace, i.e. Azure subscription 1</p></li>
+<li><p>Select “Quick create”</p></li>
+<li><p>Type in a Workspace name of your choice, i.e. “TKET”</p></li>
+<li><p>Region, slect your region, i.e. West US (You will see that you have access to IonQ and Quantinuum) and click create. (do read the providers’ terms and conditions carefully)</p></li>
+</ol>
+<p>Deployment of your workspace usually takes about 5 minutes to complete. Once done, you should see a message “Your deployment is complete”. The status and deployment details will be updated in the portal.</p>
+<p>The important information for connecting your account to your computer is the <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">ID</span></code> and <code class="docutils literal notranslate"><span class="pre">Location</span></code>, which you can find in the “Overview” section of your Quantum workspace.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="submitting-a-job-through-azure-quantum">
+<h1>Submitting a job through Azure Quantum<a class="headerlink" href="#submitting-a-job-through-azure-quantum" title="Permalink to this headline">#</a></h1>
+<p>To submit a simple job, or quantum program, to Quantinuum or IonQ we will need to install <code class="docutils literal notranslate"><span class="pre">pytket-qsharp</span></code>. It is an extension to <code class="docutils literal notranslate"><span class="pre">pytket</span></code> that allows <code class="docutils literal notranslate"><span class="pre">pytket</span></code> circuits to be executed on remote devices and simulators via Azure Quantum.</p>
+<p>In order to use <code class="docutils literal notranslate"><span class="pre">pytket-qsharp</span></code> you will first need to install the <code class="docutils literal notranslate"><span class="pre">dotnet</span> <span class="pre">SDK</span> <span class="pre">(6.0)</span></code> and the <code class="docutils literal notranslate"><span class="pre">iqsharp</span></code> tool. (On some Linux systems it is also necessary to modify your PATH.)</p>
+<ol class="simple">
+<li><p>See <a class="reference external" href="https://dotnet.microsoft.com/en-us/download/dotnet/6.0">this page</a> for instructions on installing the SDK on your operating system.</p></li>
+<li><p>On Linux, ensure that the dotnet tools directory is on your path. Typically this will be ~/.dotnet/tools.</p></li>
+<li><p>Open terminal and run <code class="docutils literal notranslate"><span class="pre">dotnet</span> <span class="pre">tool</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">Microsoft.Quantum.IQSharp</span></code>in <code class="docutils literal notranslate"><span class="pre">C:\</span></code> directory. You should get a mesaage stating that ‘microsoft.quantum.iqsharp’ was successfully installed.</p></li>
+<li><p>Then run <code class="docutils literal notranslate"><span class="pre">dotnet</span> <span class="pre">iqsharp</span> <span class="pre">install</span> <span class="pre">--user</span></code> in the terminal/</p></li>
+</ol>
+<p>Alternatively, you can set up an environment with all the required packages using conda:</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">qsharp-env</span> <span class="pre">-c</span> <span class="pre">quantum-engineering</span> <span class="pre">qsharp</span> <span class="pre">notebook</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">qsharp-env</span></code></p>
+<p>Now we are ready to install <code class="docutils literal notranslate"><span class="pre">pytket-qsharp</span></code>. In your jupyter notebook run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytket-qsharp</span></code></p>
+<p>And then prepare the Q# environment by running:</p>
+<p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pytket.extensions.qsharp</span> <span class="pre">import</span> <span class="pre">AzureBackend</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#pip install pytket-qsharp;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from pytket.extensions.qsharp import AzureBackend</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="accessing-quantinuum-and-ionq-targets">
+<h2>Accessing Quantinuum and IonQ targets<a class="headerlink" href="#accessing-quantinuum-and-ionq-targets" title="Permalink to this headline">#</a></h2>
+<p>Azure Quantum partners with third-party companies such as IonQ and Quantinuum to deliver solutions to quantum jobs. These company offerings are called providers. Each provider can offer multiple targets with different capabilities.</p>
+<p>Quantinuum’s targets are listed in the table below:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Target name</p></th>
+<th class="head"><p>Target ID</p></th>
+<th class="head"><p>Number of qubits</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>H1-1 API Validator</p></td>
+<td><p>quantinuum.hqs-lt-s1-apival</p></td>
+<td><p>12 qubits</p></td>
+<td><p>Quantinuum’s “API validator.” Use this to validate quantum programs before submitting to hardware or emulation on Quantinuum’s platform. Free of cost.</p></td>
+</tr>
+<tr class="row-odd"><td><p>H1-1 Emulator</p></td>
+<td><p>quantinuum.hqs-lt-s1-sim</p></td>
+<td><p>12 qubits</p></td>
+<td><p>Quantinuum’s quantum simulator for H1-1. Uses a noise model that is consistent with their H1-1 hardware offering. Not free of cost.</p></td>
+</tr>
+<tr class="row-even"><td><p>H1-2 Emulator</p></td>
+<td><p>quantinuum.hqs-lt-s2-sim</p></td>
+<td><p>12 qubits</p></td>
+<td><p>Quantinuum’s quantum simulator for H1-2. Uses a noise model that is consistent with their H1-2 hardware offering. Not free of cost.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantinuum System Model: H1 Family</p></td>
+<td><p>quantinuum.hqs-lt</p></td>
+<td><p>12 qubits</p></td>
+<td><p>Quantinuum’s H1 family of trapped-ion quantum computers. Not free of cost.</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantinuum System Model H1-1</p></td>
+<td><p>quantinuum.hqs-lt-s1</p></td>
+<td><p>12 qubits</p></td>
+<td><p>Quantinuum’s H1-1 computer. Not free of cost.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantinuum System Model H-2</p></td>
+<td><p>quantinuum.hqs-lt-s2</p></td>
+<td><p>12 qubits</p></td>
+<td><p>Quantinuum’s H1-2 computer. Not free of cost.</p></td>
+</tr>
+</tbody>
+</table>
+<p>To learn more about Quantinuum’s targets, check out <a class="reference external" href="https://docs.microsoft.com/en-us/azure/quantum/provider-quantinuum">this documentation</a> and <a class="reference external" href="https://docs.microsoft.com/en-us/azure/quantum/provider-honeywell">this</a>. How to estimate associated costs see <a class="reference external" href="https://docs.microsoft.com/en-us/azure/quantum/pricing?tabs=tabid-AQcredits%2Ctabid-AQcreditsQ%2Ctabid-payasgo%2Ctabid-learndevelop&amp;pivots=ide-computing">here</a>.</p>
+<p>IonQ’s targets are listed in this table:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Target name</p></th>
+<th class="head"><p>Target ID</p></th>
+<th class="head"><p>Number of qubits</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Quantum simulator</p></td>
+<td><p>ionq.simulator</p></td>
+<td><p>29 qubits</p></td>
+<td><p>IonQ’s cloud-based idealized simulator. Free of cost.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum computer</p></td>
+<td><p>ionq.qpu</p></td>
+<td><p>11 qubits</p></td>
+<td><p>IonQ’s trapped-ion quantum computer. This is real quantum hardware, not a simulation. Not for free</p></td>
+</tr>
+</tbody>
+</table>
+<p>To learn more about IonQ’s targets, check out <a class="reference external" href="https://docs.microsoft.com/en-us/azure/quantum/provider-ionq">this documentation</a> and how to estimate associated costs see <a class="reference external" href="https://docs.microsoft.com/en-us/azure/quantum/pricing?tabs=tabid-AQcredits%2Ctabid-AQcreditsQ%2Ctabid-payasgo%2Ctabid-learndevelop&amp;pivots=ide-computing">here</a>.</p>
+<p>To get access to Quantinuum’s and IonQ’s targets you need your Azure Quantum workspace <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">ID</span></code> and <code class="docutils literal notranslate"><span class="pre">Loaction</span></code>.</p>
+<p>For example, to access the “ionq.simulator” use</p>
+<p><code class="docutils literal notranslate"><span class="pre">backend_ionQ</span> <span class="pre">=</span> <span class="pre">AzureBackend(&quot;ionq.simulator&quot;,resourceId=&quot;your</span> <span class="pre">resource</span> <span class="pre">ID&quot;,</span>&#160;&#160;&#160; <span class="pre">location=&quot;your</span> <span class="pre">location&quot;)</span></code></p>
+<p>To access the Qunatinuum Syntax checker you run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">backend_Quant</span> <span class="pre">=</span> <span class="pre">AzureBackend(&quot;quantinuum.hqs-lt-s1-apival&quot;,resourceId=&quot;your</span> <span class="pre">resource</span> <span class="pre">ID&quot;,</span>&#160;&#160;&#160; <span class="pre">location=&quot;your</span> <span class="pre">location&quot;)</span></code></p>
+</section>
+<section id="example-pytket-job-submission-to-ionq">
+<h2>Example <code class="docutils literal notranslate"><span class="pre">pytket</span></code> job submission to IonQ<a class="headerlink" href="#example-pytket-job-submission-to-ionq" title="Permalink to this headline">#</a></h2>
+<p>Let’s submit a circuit to IonQ’s simulator, which is free. (note that commands are commented out with “#” to be inactive for compilation of this manual. Remove the “#” when you run the code below)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#backend_ionQ = AzureBackend(&quot;ionq.simulator&quot;,resourceId=&quot;your resource ID&quot;,location=&quot;westus&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below we generate a circuit that will produce a Bell state, assuming the qubits are all initialized in the |0&gt; state:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from pytket import Circuit</span>
+<span class="c1">#from pytket.circuit.display import render_circuit_jupyter</span>
+<span class="c1">#circ = Circuit(2,2)</span>
+<span class="c1">#circ.H(0)</span>
+<span class="c1">#circ.CX(0, 1)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Suppose we want to measure this Bell state to get some actual results out, so let’s append some <code class="docutils literal notranslate"><span class="pre">Measure</span></code> gates to the circuit. The <code class="docutils literal notranslate"><span class="pre">Circuit</span></code> class has the measure_all utility function, which appends <code class="docutils literal notranslate"><span class="pre">Measure</span></code> gates on every qubit. This function will automatically add the classical bits to the circuit if they are not already there. All of these results will be written to the default classical register (‘c’).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#circ.measure_all()</span>
+<span class="c1">#render_circuit_jupyter(circ)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check if our circuit is valid to be run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#backend_ionQ.valid_circuit(circ)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are now good to run this circuit on the device. After submitting, we can use the handle to check the status of the job so that we know when results are ready to be retrieved. The <code class="docutils literal notranslate"><span class="pre">circuit_status</span></code> method works for all backends and returns a <code class="docutils literal notranslate"><span class="pre">CircuitStatus</span></code> object. If we just run <code class="docutils literal notranslate"><span class="pre">get_result</span></code> straight away, the backend will wait for results to complete, blocking any other code from running.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#quantum_handle = backend_ionQ.process_circuit(circ, n_shots=100)</span>
+<span class="c1">#print(backend_ionQ.circuit_status(quantum_handle))</span>
+<span class="c1">#quantum_counts = backend_ionQ.get_result(quantum_handle).get_counts()</span>
+<span class="c1">#print(quantum_counts)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-pytket-job-submission-to-quantinuum">
+<h2>Example <code class="docutils literal notranslate"><span class="pre">pytket</span></code> job submission to Quantinuum<a class="headerlink" href="#example-pytket-job-submission-to-quantinuum" title="Permalink to this headline">#</a></h2>
+<p>Let’s submit a circuit to Quantinuum’s emulator, which is for a charge. (note that commands are commented out with “#” to be inactive for compilation of this manual. Remove the “#” when you run the code below)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#backend_Q = AzureBackend(&quot;quantinuum.hqs-lt-s1-sim&quot;,resourceId=&quot;your resource ID&quot;,location=&quot;westus&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#backend_Q.valid_circuit(circ)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#quantum_handle = backend_Q.process_circuit(circ, n_shots=10)</span>
+<span class="c1">#print(backend_Q.circuit_status(quantum_handle))</span>
+<span class="c1">#quantum_counts = backend_Q.get_result(quantum_handle).get_counts()</span>
+<span class="c1">#print(quantum_counts)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Quantinuum’s quotas are tracked based on the QPU usage credit unit, H1 Quantum Credit (HQC) for jobs submitted to System Model H1 quantum computer series, and eHQC for the emulators. The estimated cost for running this Bell state 10 times on a H1 emulator is 5 eHQC. (Note HQC and eHQC are computed using the same formula). Your free Azure Quantum account gives you 160 eHQC. We now have used 5 of the 160 eHQC.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="running_on_IBM.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Running a circuit on IBM’s backends</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Hackathon%20tasks.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Your Tasks for this Hackathon</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Kathrin Spendier, Quantinuum<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

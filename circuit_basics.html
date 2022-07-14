@@ -142,6 +142,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="Azure.html">
+   Access to Quantinuum and IonQ Backends
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="Hackathon%20tasks.html">
    Your Tasks for this Hackathon
   </a>
@@ -565,7 +570,7 @@ H=\frac{1}{\sqrt{2}}
     &lt;link rel=&#34;stylesheet&#34; href=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.css&#34;&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div id=&#34;circuit-display-vue-container-8f38b192-5131-4791-943d-1460b7058dcc&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
+    &lt;div id=&#34;circuit-display-vue-container-d4ec1acb-b203-4783-b115-4a22d2492cde&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
         &lt;div style=&#34;display: none&#34;&gt;
             &lt;div id=&#34;circuit-json-to-display&#34;&gt;{&#34;bits&#34;: [[&#34;c&#34;, [0]]], &#34;commands&#34;: [{&#34;args&#34;: [[&#34;q&#34;, [0]]], &#34;op&#34;: {&#34;type&#34;: &#34;H&#34;}}], &#34;implicit_permutation&#34;: [[[&#34;q&#34;, [0]], [&#34;q&#34;, [0]]]], &#34;phase&#34;: &#34;0.0&#34;, &#34;qubits&#34;: [[&#34;q&#34;, [0]]]}&lt;/div&gt;
         &lt;/div&gt;
@@ -581,7 +586,7 @@ H=\frac{1}{\sqrt{2}}
             window.pytketCircuitDisplays = {};
         }
 
-        const uid = &#34;8f38b192-5131-4791-943d-1460b7058dcc&#34;;
+        const uid = &#34;d4ec1acb-b203-4783-b115-4a22d2492cde&#34;;
 
         // Create the root Vue component
         window.pytketCircuitDisplays[uid] = createApp({
@@ -627,7 +632,7 @@ H=\frac{1}{\sqrt{2}}
     &lt;link rel=&#34;stylesheet&#34; href=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.css&#34;&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div id=&#34;circuit-display-vue-container-deca2f76-ff1e-407d-88e9-373aeb56018e&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
+    &lt;div id=&#34;circuit-display-vue-container-51e542b8-1738-45af-bd90-f815f5430215&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
         &lt;div style=&#34;display: none&#34;&gt;
             &lt;div id=&#34;circuit-json-to-display&#34;&gt;{&#34;bits&#34;: [[&#34;c&#34;, [0]]], &#34;commands&#34;: [{&#34;args&#34;: [[&#34;q&#34;, [0]]], &#34;op&#34;: {&#34;type&#34;: &#34;H&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [0]], [&#34;c&#34;, [0]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}], &#34;implicit_permutation&#34;: [[[&#34;q&#34;, [0]], [&#34;q&#34;, [0]]]], &#34;phase&#34;: &#34;0.0&#34;, &#34;qubits&#34;: [[&#34;q&#34;, [0]]]}&lt;/div&gt;
         &lt;/div&gt;
@@ -643,7 +648,7 @@ H=\frac{1}{\sqrt{2}}
             window.pytketCircuitDisplays = {};
         }
 
-        const uid = &#34;deca2f76-ff1e-407d-88e9-373aeb56018e&#34;;
+        const uid = &#34;51e542b8-1738-45af-bd90-f815f5430215&#34;;
 
         // Create the root Vue component
         window.pytketCircuitDisplays[uid] = createApp({
@@ -745,6 +750,18 @@ H=\frac{1}{\sqrt{2}}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [13],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -796,7 +813,7 @@ available in the documentation <a class="reference external" href="https://cqcl.
     &lt;link rel=&#34;stylesheet&#34; href=&#34;https://unpkg.com/pytket-circuit-renderer@0.1/dist/pytket-circuit-renderer.css&#34;&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div id=&#34;circuit-display-vue-container-ce6cf0b4-af31-4479-b307-31d7afea56a1&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
+    &lt;div id=&#34;circuit-display-vue-container-852925f3-15f7-425d-974b-247b44838320&#34; class=&#34;pytket-circuit-display-container&#34;&gt;
         &lt;div style=&#34;display: none&#34;&gt;
             &lt;div id=&#34;circuit-json-to-display&#34;&gt;{&#34;bits&#34;: [[&#34;c&#34;, [0]], [&#34;c&#34;, [1]], [&#34;c&#34;, [2]]], &#34;commands&#34;: [{&#34;args&#34;: [[&#34;q&#34;, [0]]], &#34;op&#34;: {&#34;params&#34;: [&#34;0.25&#34;], &#34;type&#34;: &#34;Rz&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [1]]], &#34;op&#34;: {&#34;params&#34;: [&#34;0.5&#34;], &#34;type&#34;: &#34;Rx&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [1]], [&#34;c&#34;, [1]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [0]], [&#34;q&#34;, [2]]], &#34;op&#34;: {&#34;type&#34;: &#34;CX&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [0]], [&#34;c&#34;, [0]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}, {&#34;args&#34;: [[&#34;q&#34;, [2]], [&#34;c&#34;, [2]]], &#34;op&#34;: {&#34;type&#34;: &#34;Measure&#34;}}], &#34;implicit_permutation&#34;: [[[&#34;q&#34;, [0]], [&#34;q&#34;, [0]]], [[&#34;q&#34;, [1]], [&#34;q&#34;, [1]]], [[&#34;q&#34;, [2]], [&#34;q&#34;, [2]]]], &#34;phase&#34;: &#34;0.0&#34;, &#34;qubits&#34;: [[&#34;q&#34;, [0]], [&#34;q&#34;, [1]], [&#34;q&#34;, [2]]]}&lt;/div&gt;
         &lt;/div&gt;
@@ -812,7 +829,7 @@ available in the documentation <a class="reference external" href="https://cqcl.
             window.pytketCircuitDisplays = {};
         }
 
-        const uid = &#34;ce6cf0b4-af31-4479-b307-31d7afea56a1&#34;;
+        const uid = &#34;852925f3-15f7-425d-974b-247b44838320&#34;;
 
         // Create the root Vue component
         window.pytketCircuitDisplays[uid] = createApp({
@@ -828,7 +845,7 @@ available in the documentation <a class="reference external" href="https://cqcl.
 
 </div></div>
 </div>
-<p>We have seen how to define a circuit and visualize it, as well as how to run it on a simlator. Next, we will discuss how to run a circuit on an emulator or actual quantum computer.</p>
+<p>We have seen how to define a circuit and visualize it, as well as how to run it on a simulator. Next, we will discuss how to run a circuit on an emulator or actual quantum computer.</p>
 </section>
 </section>
 
