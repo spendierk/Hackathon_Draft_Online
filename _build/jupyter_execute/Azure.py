@@ -40,7 +40,7 @@
 # The important information for connecting your account to your computer is the `Resource ID` and `Location`, which you can find in the "Overview" section of your Quantum workspace.
 # 
 
-# # Submitting a job through Azure Quantum
+# ## Submitting a job through Azure Quantum
 # 
 # To submit a simple job, or quantum program, to Quantinuum or IonQ we will need to install `pytket-qsharp`. It is an extension to `pytket` that allows `pytket` circuits to be executed on remote devices and simulators via Azure Quantum. 
 # 
