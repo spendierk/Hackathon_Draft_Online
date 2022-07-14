@@ -7,4 +7,6 @@ chapters:
 - file: Introduction
 - file: circuit_basics
 - file: running_on_IBM
+- file: Azure
 - file: Hackathon tasks
+
